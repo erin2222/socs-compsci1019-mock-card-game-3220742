@@ -33,5 +33,9 @@ class test_task(unittest.TestCase):
             self.assertEqual(result[1][0],"Xi")
 
     def test_play_a_card_from_deck_random(self):
-        #Sub-task 5 – Mock Get Player Names
-        pass
+        with patch('card_game.card.entity.Deck.random.randint') as mock:
+            mock.return_value = 0
+            deck = create_deck()
+            firstCard= deck[0]
+            playedCard = play_a_card_from_deck(deck)
+            self.assertEqual(playedCard,firstCard)
