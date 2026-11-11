@@ -27,8 +27,10 @@ class test_task(unittest.TestCase):
         
 
     def test_get_csv_rows(self):
-        #Sub-task 4 – Mock File Load
-        pass
+        with patch('card_game.LoadCSV.create_csv_reader') as mock:
+            mock.return_value = "Derek\nXi"
+            result = get_csv_rows("randomfile.csv")
+            self.assertEqual(result[1][0],"Xi")
 
     def test_play_a_card_from_deck_random(self):
         #Sub-task 5 – Mock Get Player Names
